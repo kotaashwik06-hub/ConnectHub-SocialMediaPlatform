@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h2>ConnectHub</h2>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="profile.html">My Profile</a>
+            <a href="notifications.html">Notifications</a>
+            <button id="logoutButton" type="button">Logout</button>
+        </div>
+    </header>
+
+    <main class="container profile-container">
+
+        <div class="profile-page-layout">
+
+            <!-- LEFT SIDE: PROFILE DETAILS AND POSTS -->
+            <div class="profile-main-column">
+
+                <section class="profile-card">
+
+                    <img
+                        id="profilePicture"
+                        src="https://placehold.co/150x150?text=Profile"
+                        alt="Profile Picture"
+                        class="profile-picture"
+                    >
+
+                    <h2 id="profileTitle">User Profile</h2>
+
+                    <div class="profile-info">
+                        <p>
+                            <strong>Username:</strong>
+                            <span id="profileUsername"></span>
+                        </p>
+
+                        <p id="emailContainer">
+                            <strong>Email:</strong>
+                            <span id="profileEmail"></span>
+                        </p>
+
+                        <p>
+                            <strong>Bio:</strong>
+                            <span id="profileBio">No bio added yet.</span>
+                        </p>
+                    </div>
+
+                    <div class="follow-counts">
+                        <span>
+                            <strong id="followersCount">0</strong>
+                            Followers
+                        </span>
+
+                        <span>
+                            <strong id="followingCount">0</strong>
+                            Following
+                        </span>
+                    </div>
+
+                    <button id="followButton" type="button"
+                            style="display:none;">
+                        Follow
+                    </button>
+
+                    <button id="editProfileButton" type="button"
+                            style="display:none;">
+                        Edit Profile
+                    </button>
+
+                </section>
+
+                <!-- USER POSTS -->
+                <section class="profile-posts">
+                    <h3>My Posts</h3>
+                    <div id="myPosts"></div>
+                </section>
+
+            </div>
+
+            <!-- RIGHT SIDE: EDIT PROFILE PANEL -->
+            <aside class="profile-edit-column">
+
+                <div id="editProfileSection" style="display:none;">
+
+                    <h3>Edit Profile</h3>
+
+                    <label for="bioInput">Your Bio</label>
+
+                    <textarea
+                        id="bioInput"
+                        placeholder="Write something about yourself..."
+                        maxlength="200"
+                    ></textarea>
+
+                    <label for="pictureInput">
+                        Upload Profile Picture
+                    </label>
+
+                    <input
+                        type="file"
+                        id="pictureInput"
+                        accept="image/*"
+                    >
+
+                    <img
+                        id="profileImagePreview"
+                        alt="Profile Picture Preview"
+                        style="display:none;"
+                    >
+
+                    <button id="saveProfileButton" type="button">
+                        Save Profile
+                    </button>
+
+                    <p id="profileMessage"></p>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <script src="profile.js"></script>
+
+</body>
+</html>

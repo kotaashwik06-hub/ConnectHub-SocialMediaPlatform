@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="ConnectHub - Connect with friends, share posts and stay updated.">
+
+    <title>ConnectHub - Social Media</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar">
+
+        <h2>ConnectHub</h2>
+
+        <!-- SEARCH -->
+        <div class="search-container">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search posts..."
+                autocomplete="off"
+                aria-label="Search posts"
+            >
+
+            <input
+                type="text"
+                id="userSearchInput"
+                placeholder="Search users by username..."
+                autocomplete="off"
+                aria-label="Search users"
+            >
+
+            <div id="userSearchResults"></div>
+
+        </div>
+
+        <!-- NAVIGATION LINKS -->
+        <nav class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="profile.html">My Profile</a>
+
+            <a href="notifications.html">
+                Notifications
+                <span id="notificationBadge"></span>
+            </a>
+
+            <span id="welcomeUser"></span>
+
+            <button id="logoutButton" type="button">
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN DASHBOARD -->
+    <main class="container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <h3>Welcome to ConnectHub!</h3>
+
+            <p>
+                Your space to share updates, connect with people,
+                and stay connected with your community.
+            </p>
+
+            <hr>
+
+            <h4>Quick Navigation</h4>
+
+            <a href="index.html">Home Feed</a>
+
+            <a href="profile.html">My Profile</a>
+
+            <a href="notifications.html">Notifications</a>
+
+            <hr>
+
+            <p>
+                <strong>ConnectHub</strong>
+                <br>
+                Share moments. Build connections.
+            </p>
+
+        </aside>
+
+
+        <!-- MAIN FEED -->
+        <section class="feed">
+
+            <!-- DASHBOARD INTRODUCTION -->
+            <div class="dashboard-intro">
+
+                <h2>Your Dashboard</h2>
+
+                <p>
+                    See what's happening and share something
+                    with your friends.
+                </p>
+
+            </div>
+
+
+            <!-- CREATE POST -->
+            <section class="create-post">
+
+                <h3>Create a Post</h3>
+
+                <textarea
+                    id="postInput"
+                    placeholder="What's on your mind?"
+                    rows="4"
+                    aria-label="Write your post"
+                ></textarea>
+
+
+                <!-- IMAGE UPLOAD -->
+                <div class="image-upload">
+
+                    <label for="imageInput">
+                        Choose an Image:
+                    </label>
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                    >
+
+                    <!-- IMAGE PREVIEW -->
+                    <img
+                        id="imagePreview"
+                        alt="Selected image preview"
+                        style="display: none; max-width: 250px; margin-top: 10px; border-radius: 10px;"
+                    >
+
+                </div>
+
+
+                <button id="postButton" type="button">
+                    Publish Post
+                </button>
+
+            </section>
+
+
+            <!-- LATEST POSTS -->
+            <section class="posts-area">
+
+                <div class="feed-heading">
+
+                    <h3>Latest Posts</h3>
+
+                    <p>
+                        Explore posts shared by the ConnectHub community.
+                    </p>
+
+                </div>
+
+                <!-- POSTS LOAD HERE -->
+                <div id="postFeed"></div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>

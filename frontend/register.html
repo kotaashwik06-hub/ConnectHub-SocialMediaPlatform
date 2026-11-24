@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Register</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .register-box {
+            background: white;
+            width: 350px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button:disabled {
+            background: #93a9d8;
+            cursor: not-allowed;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-box">
+
+        <h2>ConnectHub</h2>
+        <h3>Create Account</h3>
+
+        <form id="registerForm">
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                required
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter email"
+                required
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password (minimum 6 characters)"
+                minlength="6"
+                required
+            >
+
+            <button type="submit" id="registerButton">
+                Register
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+
+        <p class="login-link">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+
+    </div>
+
+    <script>
+        const form = document.getElementById("registerForm");
+        const message = document.getElementById("message");
+        const registerButton = document.getElementById("registerButton");
+
+        form.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            registerButton.disabled = true;
+            registerButton.textContent = "Registering...";
+
+            message.style.color = "blue";
+            message.textContent = "Please wait...";
+
+            try {
+
+                const response = await fetch(
+                    "http://localhost:5001/api/auth/register",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            username,
+                            email,
+                            password
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                if (response.ok) {
+
+                    message.style.color = "green";
+                    message.textContent =
+                        "Registration successful! Redirecting to login...";
+
+                    form.reset();
+
+                    setTimeout(function() {
+                        window.location.href = "login.html";
+                    }, 1500);
+
+                } else {
+
+                    message.style.color = "red";
+                    message.textContent =
+                        data.message || "Registration failed!";
+
+                    registerButton.disabled = false;
+                    registerButton.textContent = "Register";
+                }
+
+            } catch (error) {
+
+                message.style.color = "red";
+                message.textContent =
+                    "Cannot connect to server! Please check your backend.";
+
+                registerButton.disabled = false;
+                registerButton.textContent = "Register";
+            }
+
+        });
+    </script>
+
+</body>
+</html>
